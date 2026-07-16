@@ -45,7 +45,7 @@ function dodajUKorpu(id){
 function ukloniIzKorpe(id){
     var korpa = dohvatiKorpu();
 
-    korpa.filter(x => x.id !== Number(id));
+    korpa = korpa.filter(x => x.id !== Number(id));
 
     sacuvajKorpu(korpa);
 }

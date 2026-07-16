@@ -127,7 +127,7 @@ function prikaziPorodicne(igre) {
                   
                             <div class="game-price">
                                 <img src="../img/price.png" alt="cena">
-                                <strong>${igra.cena}&nbsp;RSD</strong>
+                                <strong>${igra.akcija != null ? igra.akcija.novaCena + " RSD" : igra.cena + " RSD"}</strong>
                             </div>
                        </div>
                     </div>
