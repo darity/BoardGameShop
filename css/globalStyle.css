@@ -256,10 +256,18 @@ footer {
 .card {
     border-left: 5px solid #08796c;
     margin-top: 5px;
+    height: 100%;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
 }
 
-.card {
-    height: 100%;
+.card-bottom {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card:hover {
@@ -293,6 +301,7 @@ footer {
     padding: 10px;
     //background: #FAFAFA;
     word-wrap: break-word;
+    margin-top: auto;
 }
 
 .res-info img {
@@ -323,6 +332,10 @@ footer {
     border-left: 6px solid #287d80;
 
     box-shadow: 4px 4px 0 rgba(159, 61, 27, 0.15);
+}
+
+.card-bottom{
+    margin-top: auto;
 }
 
 .retro-section-title img {
