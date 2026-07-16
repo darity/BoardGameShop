@@ -399,3 +399,7 @@ function generisiNovo() {
     return Math.random() < 0.5; // oko 30% igara će biti nove
 }
 
+$(document).on("click", ".clickable-card", function () {
+    const id = $(this).data("id");
+    window.location.href = `Igra.html?id=${id}`;
+});

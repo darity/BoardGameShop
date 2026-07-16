@@ -83,6 +83,7 @@ function prikaziZabavne(igre) {
     igre.forEach(igra => {
         row.innerHTML += `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-3">
+            <div class="clickable-card" data-id="${igra.id}">
                 <div class="card h-100">
 
                     <img 
@@ -127,6 +128,7 @@ function prikaziZabavne(igre) {
                             </div>
                        </div>
                     </div>
+                </div>
                 </div>
             </div>
         `;

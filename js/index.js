@@ -103,8 +103,9 @@ function load() {
         console.log(igra);
         console.log(igra.komentari);
         row.innerHTML += `
+               
                 <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                    <div class="card">
+                    <div class="card clickable-card" data-id="${igra.id}">
                         <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
                         <div class="card-body">
                             <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
@@ -141,22 +142,24 @@ function ucitajNoveIgre() {
                         <span class="new-badge">
                             NOVO
                         </span>
-                        <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
-                            <div class="card-text">
-                                <div class="res-info">
-                                    <div class="res-single d-flex align-items-center">
-                                        ${dohvatiIkonicuKategorije(igra.kategorija)}
-                                        <em>${igra.kategorija}</em>
-                                    </div>
-                                    <div class="res-single d-flex align-items-center">
-                                        <img src="../img/satarY.png" alt="ocena">
-                                        <em>${dohvatiOcenu(igra)}</em>
-                                    </div>\
-                                    <div class="res-single d-flex align-items-center">
-                                        <img src="../img/price.png" alt="cena">
-                                        <em>${igra.cena}</em>
+                        <div class="clickable-card" data-id="${igra.id}">
+                            <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
+                                <div class="card-text">
+                                    <div class="res-info">
+                                        <div class="res-single d-flex align-items-center">
+                                            ${dohvatiIkonicuKategorije(igra.kategorija)}
+                                            <em>${igra.kategorija}</em>
+                                        </div>
+                                        <div class="res-single d-flex align-items-center">
+                                            <img src="../img/satarY.png" alt="ocena">
+                                            <em>${dohvatiOcenu(igra)}</em>
+                                        </div>\
+                                        <div class="res-single d-flex align-items-center">
+                                            <img src="../img/price.png" alt="cena">
+                                            <em>${igra.cena}</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -180,33 +183,35 @@ function ucitajAkcije() {
         row.innerHTML += `
                 <div class="game-slide mt-3">
                     <div class="card action-card">
-                    <span class="discount-badge">
-                        -${igra.akcija.popust}%
-                    </span>
-                        <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
-                            <div class="card-text">
-                                <div class="res-info">
-                                   
-                                    
-                                    <div class="res-single d-flex align-items-center">
-                                        <img src="../img/price.png" alt="cena">
-                                        <div>
-                                            <em class="old-price">
-                                                ${igra.cena}&nbsp;RSD
-                                            </em>
-                                            <br>
-                                            <strong class="new-price">
-                                                ${igra.akcija.novaCena}&nbsp;RSD
-                                            </strong>
+                        <span class="discount-badge">
+                            -${igra.akcija.popust}%
+                        </span>
+                        <div class="clickable-card" data-id="${igra.id}">
+                            <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
+                                <div class="card-text">
+                                    <div class="res-info">
+                                       
+                                        
+                                        <div class="res-single d-flex align-items-center">
+                                            <img src="../img/price.png" alt="cena">
+                                            <div>
+                                                <em class="old-price">
+                                                    ${igra.cena}&nbsp;RSD
+                                                </em>
+                                                <br>
+                                                <strong class="new-price">
+                                                    ${igra.akcija.novaCena}&nbsp;RSD
+                                                </strong>
+                                            </div>
+                                            
                                         </div>
                                         
-                                    </div>
-                                    
-                                    <div class="res-single d-flex align-items-center">
-                                        <img src="../img/calendar.png" alt="datum">
-                                        <em>Do ${igra.akcija.trajeDo}</em>
+                                        <div class="res-single d-flex align-items-center">
+                                            <img src="../img/calendar.png" alt="datum">
+                                            <em>Do ${igra.akcija.trajeDo}</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

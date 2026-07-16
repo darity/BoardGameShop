@@ -20,7 +20,8 @@
    8. HOME CAROUSEL
 ===================================================== */
 
-#homeCarousel {
+
+#homeCarousel, #gamesCarousel, #shopCarousel {
 	max-width: 1140px;
 	margin: 30px auto;
 	border-radius: 5px;
@@ -38,6 +39,7 @@
 
 	background-color: #faf7f2;
 }
+
 
 .slide-content {
 	width: 55%;
@@ -283,6 +285,19 @@
 		flex: 0 0 calc((100% - 90px) / 3) !important;
 		margin: 10px !important
 	}
+
+	.slide-content {
+		padding: 25px 35px;
+	}
+
+	.retro-slide h2 {
+		font-size: 1.6rem;
+	}
+
+	.retro-slide p {
+		font-size: 1rem;
+		margin-bottom: 15px;
+	}
 }
 
 
@@ -306,7 +321,7 @@
 @media (max-width: 767.98px) {
 
 	.retro-slide {
-		height: auto;
+		height: 330px;
 		min-height: 330px;
 	}
 

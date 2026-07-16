@@ -220,20 +220,23 @@ footer {
     display: flex;
 }
 
-.btn-custom {
-    background-color: var(--boja-crvena);
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
-}
+/*.btn-custom {*/
+/*    background-color: var(--boja-crvena);*/
+/*    color: white;*/
+/*    padding: 12px;*/
+/*    border-radius: 8px;*/
+/*    font-weight: bold;*/
+/*    transition: 0.3s;*/
+/*}*/
 
-.btn-custom:hover {
-    background-color: var(--boja-narandzasta);
-    color: white;
-}
+/*.btn-custom:hover {*/
+/*    background-color: var(--boja-narandzasta);*/
+/*    color: white;*/
+/*}*/
 
+.clickable-card {
+    cursor: pointer;
+}
 /* =====================================================
    15. ADS
 ===================================================== */
@@ -252,6 +255,15 @@ footer {
 /* =====================================================
    10. CARDS
 ===================================================== */
+
+.retro-slide {
+    min-height: 320px;
+    display: flex;
+    align-items: stretch;
+
+    background-color: #faf7f2;
+}
+
 
 .card {
     border-left: 5px solid #08796c;
@@ -376,3 +388,33 @@ footer {
     transform: translateY(-2px);
 }
 
+
+.gallery-shelf {
+    position: relative;
+    margin: 40px 0;
+    padding-bottom: 18px;
+}
+
+
+.gallery-shelf::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 12px;
+
+    background: linear-gradient(
+            to bottom,
+            #c58a42 0%,
+            #b57632 40%,
+            #8b5a2b 100%
+    );
+
+    border-radius: 3px;
+
+    box-shadow:
+            0 4px 8px rgba(0,0,0,.18),
+            inset 0 2px 0 rgba(255,255,255,.25);
+}
