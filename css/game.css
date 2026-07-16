@@ -1,0 +1,48 @@
+.old-price {
+    text-decoration: line-through;
+    color: #777;
+    margin-right: 8px;
+    font-size: 1.5rem;
+}
+
+.retro-card {
+    height: 100%;
+}
+.retro-card{
+    background:#fff;
+    border:1px solid #e9e1d7;
+    border-left:5px solid #2f7d7d;
+    border-radius:6px;
+    padding:25px;
+}
+.star-icon{
+    width:18px;
+    height:18px;
+    vertical-align:middle;
+    margin-right:2px;
+}
+
+.rating-star{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+#ratingInput{
+    margin-top:8px;
+}
+
+textarea{
+    min-height:120px;
+}
+
+.comment-form{
+    margin-top:40px;
+    padding-top:25px;
+    border-top:1px solid #e5e5e5;
+}
+
+.retro-btn{
+    margin-top:10px;
+}

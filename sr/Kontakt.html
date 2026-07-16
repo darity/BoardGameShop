@@ -1,0 +1,171 @@
+<html>
+	<meta charset="UTF-8">	
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/index.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+		<title>Kontakt</title>
+
+		<script>
+
+			function send(){
+
+				var name = document.sendemail.name.value;
+				var email = document.sendemail.email.value;
+				var tema = document.sendemail.tema.value;
+				var poruka = document.sendemail.message.value;
+
+				if (name == "") {
+					alert("Niste uneli Ime i Prezime!");
+					return;
+				}
+
+				if (email == ""){
+					alert("Niste uneli E-mail!");
+					return;
+				}
+				else{
+					var reg = /^\w+(-\w+)?@\w+\.\w+$/;
+
+					if (!reg.test(email)){
+						alert("E-mail nije u odgovarajucem formatu!");
+						return;
+					}
+				}
+
+				if (tema == ""){
+					alert("Niste uneli temu poruke!");
+					return;
+				}
+
+				if (poruka == ""){
+					alert("Niste uneli poruku!");
+					return;
+				}
+
+				alert("Uspesno ste poslali e-mail!");
+				window.location.href="Index.html";
+			}
+
+		</script>
+	</head>
+
+	<body>
+		
+		<header>
+
+			<div id="top-bar">
+					<a href="../rs/Index.html"><img src="../img/serbia.png"></a>
+					<a href="../en/Index.html"><img src="../img/british.png"></a>
+			</div>
+
+			<nav class="navbar navbar-expand-md navbar-dark p-4">
+
+				<a class="navbar-brand" href="Index.html"><img src="../img/logo.png" style="width: 30px;"/> BoardGameShop</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse pl-3" id="collapsibleNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item mr-2"><a class="nav-link" href="Index.html">Početna</a></li>
+						<li class="nav-item dropdown mr-2">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Lokacije</a>
+							<div class="dropdown-menu">
+						      <a class="dropdown-item" href="">Beograd</a>
+						      <a class="dropdown-item" href="">Novi Sad</a>
+						      <a class="dropdown-item" href="">Kragujevac</a>
+						      <a class="dropdown-item" href="">Kruševac</a>
+						      <a class="dropdown-item" href="">Kosovska Mitrovica</a>
+						    </div>
+						</li>
+						<li class="nav-item mr-2"><a class="nav-link" href="Dostava.html">Dostava</a></li>
+						<li class="nav-item mr-2"><a class="nav-link" href="MojeNarudzbine.html">Moje Narudžbine</a></li>
+						<li class="nav-item dropdown mr-2">
+							<a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#">O nama</a>
+							<div class="dropdown-menu">
+						      <a class="dropdown-item" href="NasTim.html">Naš Tim</a>
+						      <a class="dropdown-item" href="Nagrade.html">Nagrade</a>
+						      <a class="dropdown-item" href="Sponzori.html">Sponzori</a>
+						      <a class="dropdown-item" href="Kontakt.html">Kontakt</a>
+						    </div>
+						</li>
+					</ul>
+				</div>	
+			</nav>
+
+			<div id="page-info" class="p-5">
+
+				<h1 class="text-center">Kontaktirajte nas</h1>
+				<ul class="breadcrumb justify-content-center p-0">
+					<li class="breadcrumb-item"><a href="Index.html">Početna</a></li>
+					<li class="breadcrumb-item"><a href="#">O Nama</a></li>
+					<li class="breadcrumb-item"><a href="Kontakt.html">Kontakt</a></li>
+				</ul>
+
+			</div>
+			
+		</header> 
+
+		<div class="card ml-auto mr-auto mt-3" style="width:400px">
+		  <div class="card-body">
+		    <h4 class="card-title">Kontakt informacije</h4>
+		    <p class="card-text">
+		    	E-mail: boardinggames@gmail.com<br>
+		    	Telefon: (+381)6X-XXX-XX<br>
+		    	Adresa: XXXXXXX XXXX, Beograd<br>
+		    </p>
+		  </div>
+		</div>
+
+		<div class="container">
+
+			<div class="row mt-3">
+				<div class="col-s-12 col-lg-6 ml-auto mr-auto">
+					<form name="sendemail">
+						<div class="form-group">
+						  <label for="name">Ime i Prezime:</label>
+						  <input type="text" class="form-control" id="name" name="name">
+						</div>
+						<div class="form-group">
+						  <label for="email">E-mail:</label>
+						  <input type="text" class="form-control" id="email" name="email">
+						</div>
+
+						<div class="form-group">
+						  <label for="tema">Tema:</label>
+						  <input type="text" class="form-control" id="tema" name="tema">
+						</div>
+
+						<div class="form-group">
+						  <label for="comment">Tekst poruke:</label>
+						  <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+						</div>
+
+						<input type="button" onclick="send()" class="btn btn-block btn-success" value="Pošalji">
+					</form>
+				</div>
+			</div>
+			
+
+		</div>
+
+		
+		
+		<footer class="mt-3 pb-3">
+			<div id="ads" class="p-2">
+				<img src="../img/ads.png">
+			</div>
+			Copyright 2019<br>
+			Vanja • Isidora<br>
+			Odsek za softversko inženjerstvo Elektrotehničkog fakulteta Univerziteta u Beogradu
+		</footer>
+
+
+	</body>
+
+</html>

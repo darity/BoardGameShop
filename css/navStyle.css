@@ -1,0 +1,157 @@
+/* =====================================================
+   14. BREADCRUMB
+===================================================== */
+
+.breadcrumb {
+    background-color: transparent;
+
+    padding: 12px 18px;
+    margin: 20px 0;
+}
+
+.breadcrumb-item a {
+    color: #a43f18;
+    font-weight: 500;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #287d80;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #3b2921;
+    font-weight: 600;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #e8c07d;
+}
+
+/* =====================================================
+   5. NAVBAR
+===================================================== */
+
+nav {
+    opacity: 0.95;
+}
+
+.navbar-dark {
+    /*background: #00695C;*/
+//background-color: var(--color-primary);
+    background-color: #176B70;
+}
+
+.navbar {
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar.fixed {
+    position: fixed;
+    top: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #E8C07D;
+}
+
+.navbar-dark .navbar-nav .active > .nav-link {
+    color: #FFFFFF;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.nav-link.active {
+    border-bottom: 3px solid var(--color-accent);
+}
+
+
+/* =====================================================
+   6. DROPDOWN MENU
+===================================================== */
+
+.dropdown-menu {
+    background-color: #faf7f2;
+    border: none;
+    border-top: 3px solid #e8c07d;
+    border-radius: 0 0 5px 5px;
+    padding: 6px 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    z-index: 2000;
+}
+
+.dropdown-item {
+    color: #3b2921;
+    padding: 10px 24px;
+}
+
+.dropdown-item:hover {
+    background-color: #e8c07d;
+    color: #3b2921;
+}
+
+#collapsibleNavbar {
+
+}
+
+
+/* =====================================================
+   7. PAGE INFO
+===================================================== */
+
+#page-info h1 {
+    color: white;
+}
+
+#page-info .breadcrumb {
+    background: none;
+}
+
+#page-info .breadcrumb a {
+    color: white;
+}
+
+/* ---------- Mobile navbar ---------- */
+@media (max-width: 767.98px) {
+
+    .navbar .dropdown-menu {
+        display: block;
+
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+
+        transform: translateY(-10px);
+
+        transition: max-height 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+    }
+
+    .navbar .dropdown.show .dropdown-menu {
+        max-height: 300px;
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}

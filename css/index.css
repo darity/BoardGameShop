@@ -1,0 +1,358 @@
+/* =====================================================
+   1. VARIABLES
+===================================================== */
+
+:root {
+	--color-primary: #C94A1B;
+	--color-secondary: #176B70;
+	--color-accent: #E8C07D;
+
+	--color-background: #FAF7F2;
+	--color-surface: #FFFFFF;
+
+	--color-text: #242424;
+	--color-text-light: #6B625B;
+}
+
+
+
+/* =====================================================
+   8. HOME CAROUSEL
+===================================================== */
+
+#homeCarousel {
+	max-width: 1140px;
+	margin: 30px auto;
+	border-radius: 5px;
+	overflow: hidden;
+
+	border: 3px solid #e8c07d;
+
+	box-shadow: 0 6px 18px rgba(59, 41, 33, 0.15);
+}
+
+.retro-slide {
+	min-height: 320px;
+	display: flex;
+	align-items: stretch;
+
+	background-color: #faf7f2;
+}
+
+.slide-content {
+	width: 55%;
+	padding: 36px 70px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.slide-image {
+	width: 45%;
+	height: 320px;
+	overflow: hidden;
+	clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.slide-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.retro-slide h2 {
+	margin: 10px 0;
+
+	color: #9f3d1b;
+
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.retro-slide p {
+	margin-bottom: 25px;
+	font-size: 1.1rem;
+}
+
+.slide-label {
+	padding: 5px 12px;
+
+	background-color: #287d80;
+	color: #faf7f2;
+
+	font-size: 0.8rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+
+
+
+/* =====================================================
+   11. GAME SLIDERS
+===================================================== */
+
+.slide-wrapper {
+	position: relative;
+	width: 100%;
+}
+
+.games-slider {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+	gap: 10px;
+}
+
+.game-slide {
+	flex: 0 0 calc((100% - 120px) / 4);
+	margin: 10px;
+}
+
+
+/* Slider buttons */
+
+.slider-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 10;
+
+	width: 40px;
+	height: 40px;
+
+	border: none;
+	border-radius: 50%;
+
+	background-color: #287f80;
+	color: white;
+
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.slider-btn.left {
+	left: -55px;
+}
+
+.slider-btn.right {
+	right: -55px;
+}
+
+
+/* =====================================================
+   12. PRICES AND BADGES
+===================================================== */
+
+.old-price {
+	text-decoration: line-through;
+	color: #777;
+	margin-right: 8px;
+}
+
+.new-price {
+	color: #b9471b;
+	font-weight: bold;
+}
+
+.action-card ,.card-new {
+	position: relative;
+}
+
+.discount-badge {
+	position: absolute;
+	top: 12px;
+	right: -5px;
+	z-index: 2;
+
+	background-color: #c94717;
+	color: white;
+
+	padding: 8px 15px;
+	font-weight: bold;
+
+	box-shadow: 3px 3px 0 #8f2e0d;
+}
+
+.new-badge {
+	position: absolute;
+	top: 12px;
+	right: -5px;
+	z-index: 2;
+
+	background-color: #278586;
+	color: white;
+
+	padding: 8px 15px;
+	font-size: 14px;
+	font-weight: bold;
+
+	box-shadow: 3px 3px 0 #176061;
+}
+
+
+/* =====================================================
+   13. EVENTS
+===================================================== */
+
+.event-card {
+	display: flex;
+	height: 100%;
+	background-color: white;
+	border: 1px solid #ddd;
+	border-left: 5px solid #278586;
+	border-radius: 3px;
+	overflow: hidden;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.event-date {
+	min-width: 85px;
+	background-color: #f4eee8;
+	color: #a83b13;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.event-date .day {
+	font-size: 25px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.event-date .month {
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+.event-content {
+	padding: 20px;
+}
+
+.event-tag {
+	display: inline-block;
+	padding: 4px 8px;
+	margin-bottom: 8px;
+
+	background-color: #278586;
+	color: white;
+
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.event-content h3 {
+	color: #a83b13;
+	font-size: 21px;
+	margin-bottom: 8px;
+}
+
+.event-content p {
+	margin-bottom: 15px;
+}
+
+.event-info {
+	display: flex;
+	gap: 15px;
+	font-size: 14px;
+	font-style: italic;
+}
+
+/* =====================================================
+   18. RESPONSIVE
+===================================================== */
+
+
+/* ---------- Up to 992px ---------- */
+
+@media (max-width: 992px) {
+
+	.game-slide {
+		flex: 0 0 calc((100% - 90px) / 3) !important;
+		margin: 10px !important
+	}
+}
+
+
+/* ---------- Up to 768px ---------- */
+
+@media (max-width: 768px) {
+
+	.game-slide {
+		flex: 0 0 calc((100% - 60px) / 2) !important;
+		margin: 8px !important
+	}
+
+	.games-slider {
+		gap: 12px !important;
+	}
+}
+
+
+/* ---------- Mobile carousel ---------- */
+
+@media (max-width: 767.98px) {
+
+	.retro-slide {
+		height: auto;
+		min-height: 330px;
+	}
+
+	.slide-content {
+		width: 100% !important;
+		padding: 35px 70px !important;
+
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center !important;
+		justify-content: center !important;
+
+		text-align: center !important;
+	}
+
+	.slide-image {
+		display: none;
+	}
+
+	.retro-slide h2 {
+		font-size: 1.7rem;
+		line-height: 1.2;
+		margin: 12px 0;
+	}
+
+	.retro-slide p {
+		max-width: 300px;
+		font-size: 1rem;
+		line-height: 1.5;
+		margin-bottom: 20px;
+	}
+}
+
+
+/* Original mobile rule — currently commented out */
+
+/*
+@media (max-width: 576px) {
+
+    .game-slide {
+        flex: 0 0 calc((100% - 60px) / 2) !important;
+        margin: 8px !important
+    }
+
+    .games-slider {
+        gap: 8px !important;
+    }
+}
+*/

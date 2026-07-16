@@ -1,0 +1,155 @@
+.game-details-btn {
+    display: inline-block;
+    padding: 8px 14px;
+
+    background-color: #c94a1b;
+    color: white;
+
+    border: 2px solid #9f3d1b;
+    border-radius: 3px;
+
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.game-details-btn:hover {
+    background-color: #9f3d1b;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.catalog-controls {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.catalog-controls input,
+.catalog-controls select {
+    padding: 10px 14px;
+    border: 2px solid #e8c07d;
+    background-color: #faf7f2;
+    color: #3b2921;
+    outline: none;
+}
+
+.catalog-controls input {
+    flex: 1;
+    width: 300px;
+}
+
+.catalog-controls select {
+    min-width: 200px;
+}
+
+.catalog-controls input:focus,
+.catalog-controls select:focus {
+    border-color: #287d80;
+}
+
+.card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.game-price {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #9f3d1b;
+    font-size: 16px;
+}
+
+.game-price img {
+    width: 18px;
+    height: 18px;
+}
+
+.sort-dropdown {
+    position: relative;
+    width: 200px;
+}
+
+.sort-selected {
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    display: flex;
+
+    background-color: #faf7f2;
+    color: #3b2921;
+
+    border: 2px solid #e8c07d;
+    cursor: pointer;
+}
+
+.sort-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+
+    background-color: #faf7f2;
+    border: 1px solid #e8c07d;
+    z-index: 100;
+}
+
+.sort-options div {
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.sort-options div:hover {
+    background-color: #e8c07d;
+    color: #3b2921;
+}
+
+.sort-arrow {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.sort-dropdown.open .sort-arrow {
+    transform: rotate(180deg);
+}
+
+.card-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.game-details-btn{
+    flex:1;
+}
+
+.game-price{
+    white-space:nowrap;
+}
+
+@media (min-width:768px){
+    #downloadPdf{
+        width:auto !important;
+        margin-left:auto !important;
+    }
+}
+
+@media (max-width:767px){
+    #downloadPdf{
+        width:100% !important;
+        margin-top:10px !important;
+    }
+}

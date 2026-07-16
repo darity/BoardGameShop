@@ -1,0 +1,233 @@
+<html>
+    <meta charset="UTF-8">  
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <title>Dostava - GameDelivery</title>
+
+        <script src="../DataHelper.js"></script>
+
+        <script type="text/javascript">
+            
+            var data = dohvatiIgre(); 
+            data.sort(function(a,b){
+                        return a.naziv.localeCompare(b.naziv);
+                    });
+
+            function load(){
+                var row = document.getElementById("igre");
+                row.innerHTML = "";
+                for (var i = 0; i < data.length; i++){
+                    row.innerHTML += '\
+                        <div class="col-sm-12 col-md-6 col-lg-4 mt-3">\
+                            <div class="card">\
+                              <img class="card-img-top" src="slike/' + data[i].slike[0] + '">\
+                              <div class="card-body">\
+                                <h4 class="card-title">' + data[i].naziv + '</h4>\
+                                <p class="card-text">\
+                                    <a class="btn btn-success btn-block" href="Meni.html?id=' + data[i].id + '">Detalji</a>\
+                                </p>\
+                              </div>\
+                            </div>\
+                        </div>';
+                }
+            }
+
+            function filterChange(){
+                var f = new Array();
+
+                if (document.getElementById("strategije").checked) f.push("Igre strategije");
+                if (document.getElementById("porodicne").checked) f.push("Porodicne igre");
+                if (document.getElementById("karte").checked) f.push("Igre sa kartama");
+
+                var grad = document.getElementById("opstina").value;
+
+                data = dohvatiIgre();
+                data.sort(function(a,b){
+                        return a.naziv.localeCompare(b.naziv);
+                    });
+                
+                data = data.filter(function(a){
+                    var res;
+                    if (f.length != 0){
+                        res = false;
+                        for (var i = 0; i < f.length; i++){
+                            if (a.tipovi.includes(f[i])){
+                                res = true;
+                                break;
+                            }
+                        }
+                    }
+                    else res = true;
+                    
+                    if (grad != "Sve" && a.grad != grad) res = false;
+                    return res;
+                });
+            
+                orderChange();
+                load();
+            }
+
+            function orderChange(){
+                var poOceni = document.getElementById("poOceni").checked;
+                var poImenu = document.getElementById("poImenu").checked;
+                var poLokaciji = document.getElementById("poLokaciji").checked;
+                
+                if (poOceni && poImenu && poLokaciji){
+                    data.sort(function(a,b){
+                        var n = dohvatiOcenu(b) - dohvatiOcenu(a);
+                        if (n == 0){
+                            var m = a.naziv.localeCompare(b.naziv);
+                            if (m == 0){
+                                return a.adresa.localeCompare(b.adresa);
+                            }
+                            else return m;
+                        }
+                        else return n;
+                    });
+                }
+                else if (poOceni && poImenu){
+                    data.sort(function(a,b){
+                        var n = dohvatiOcenu(b) - dohvatiOcenu(a);
+                        if (n == 0){
+                            return a.naziv.localeCompare(b.naziv);
+                        }
+                        else return n;
+                    });
+                }
+                else if (poOceni && poLokaciji){
+                    data.sort(function(a,b){
+                        var n = dohvatiOcenu(b) - dohvatiOcenu(a);
+                        if (n == 0){
+                            return a.adresa.localeCompare(b.adresa);
+                        }
+                        else return n;
+                    });
+                }
+                else if (poImenu && poLokaciji){
+                    data.sort(function(a, b){
+                        var n = a.naziv.localeCompare(b.naziv);
+                        if (n == 0){
+                            return a.adresa.localeCompare(b.adresa);
+                        }
+                        return n;
+                    });
+                }
+                else if (poImenu){
+                    data.sort(function(a,b){ return a.naziv.localeCompare(b.naziv); });
+                }
+                else if (poLokaciji){
+                    data.sort(function(a,b){ return a.adresa.localeCompare(b.adresa); });
+                }
+                else if (poOceni){
+                    data.sort(function(a,b){ return dohvatiOcenu(b) - dohvatiOcenu(a); });
+                }
+                load();
+            }
+        </script>
+    </head>
+
+    <body onload="load()">
+        <header>
+            <div id="top-bar">
+                <a href="../rs/Index.html"><img src="../img/serbia.png"></a>
+                <a href="../en/Index.html"><img src="../img/british.png"></a>
+            </div>
+
+            <nav class="navbar navbar-expand-md navbar-dark p-4">
+                <a class="navbar-brand" href="Index.html"><img src="../img/logo.png" style="width: 30px;"/> GameDelivery</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse pl-3" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mr-2"><a class="nav-link" href="Index.html">Početna</a></li>
+                        <li class="nav-item mr-2"><a class="nav-link active" href="Dostava.html">Dostava igara</a></li>
+                        <li class="nav-item mr-2"><a class="nav-link" href="MojeNarudzbine.html">Moje Narudžbine</a></li>
+                    </ul>
+                </div>  
+            </nav>
+
+            <div id="page-info" class="p-5">
+                <h1 class="text-center">Dostava igara</h1>
+                <ul class="breadcrumb justify-content-center p-0">
+                    <li class="breadcrumb-item"><a href="Index.html">Početna</a></li>
+                    <li class="breadcrumb-item"><a href="Dostava.html">Dostava</a></li>
+                </ul>
+            </div>
+        </header>  
+
+        <div class="container-fluid mt-3">      
+            <div class="row">
+                <div class="col-sm-12 col-lg-3">
+                    <div class="jumbotron">
+                        <h3>Filter:</h3>
+                        <h6>Grad / Opština:</h6>
+                        <hr>
+                        <select class="form-control" id="opstina">
+                            <option value="Sve">Sve opštine</option>
+                            <option value="Beograd">Beograd</option>
+                            <option value="Novi Sad">Novi Sad</option>
+                            <option value="Kragujevac">Kragujevac</option>
+                            <option value="Kruševac">Kruševac</option>
+                            <option value="Kosovska Mitrovica">Kosovska Mitrovica</option>
+                        </select>
+                        <br>
+
+                        <h6>Tip igre:</h6>
+                        <hr>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="strategije">
+                            <label class="custom-control-label" for="strategije">Igre strategije</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="porodicne">
+                            <label class="custom-control-label" for="porodicne">Porodične igre</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="karte">
+                            <label class="custom-control-label" for="karte">Igre sa kartama</label>
+                        </div>
+
+                        <button class="btn btn-success btn-block mt-3" onclick="filterChange()">Primeni</button>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-9">
+                    <div class="row mt-3">
+                        <div class="col d-flex align-items-center">
+                            <div class="sortiraj-filter">
+                                <div class="custom-control custom-checkbox ml-3">
+                                    <input class="custom-control-input" type="checkbox" id="poOceni" onchange="orderChange()">
+                                    <label class="custom-control-label" for="poOceni">Po oceni</label>
+                                </div>
+                                <div class="custom-control custom-checkbox ml-3">
+                                    <input class="custom-control-input" type="checkbox" id="poImenu" onchange="orderChange()">
+                                    <label class="custom-control-label" for="poImenu">Po imenu</label>
+                                </div>
+                                <div class="custom-control custom-checkbox ml-3">
+                                    <input class="custom-control-input" type="checkbox" id="poLokaciji" onchange="orderChange()">
+                                    <label class="custom-control-label" for="poLokaciji">Po lokaciji</label>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="row mt" id="igre"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-3 pb-3">
+            <div id="ads" class="p-2">
+                <img src="../img/ads.png">
+            </div>
+            Copyright 2026<br>
+            Vanja • Isidora<br>
+        </footer>
+    </body>
+</html>

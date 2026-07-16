@@ -1,0 +1,365 @@
+/* =====================================================
+   2. GLOBAL
+===================================================== */
+:root {
+    --color-primary: #C94A1B;
+    --color-secondary: #176B70;
+    --color-accent: #E8C07D;
+
+    --color-background: #FAF7F2;
+    --color-surface: #FFFFFF;
+
+    --color-text: #242424;
+    --color-text-light: #6B625B;
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0 0 320px;
+    overflow-x: hidden;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.table td, th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* =====================================================
+   4. HEADER
+===================================================== */
+
+header {
+    background-image: url('../img/storeBaner.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 100%;
+}
+
+.store-header {
+    height: 80px;
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.store-header a {
+    text-decoration: none;
+}
+
+.store-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 26px;
+    font-weight: bold;
+    color: #08796c;
+    text-decoration: none;
+}
+
+.store-brand:hover {
+    color: #08796c;
+}
+
+.store-brand img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+#store-name {
+    color: #9F3D1B;
+}
+
+.language-flag {
+    width: 25px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.language-selector a {
+    color: black;
+    text-decoration: none;
+}
+
+
+
+/* =====================================================
+   17. FOOTER
+===================================================== */
+
+footer {
+    background: var(--color-primary);
+    text-align: center;
+    color: white;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 300px;
+    width: 100%;
+}
+
+footer {
+    background-color: #303030;
+    color: white;
+    padding: 35px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links h4 {
+    color: #f0bd62;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    margin-top: 35px;
+    text-align: center;
+}
+
+/* =====================================================
+   3. GENERAL COMPONENTS
+===================================================== */
+
+.left-title {
+//background: #00695C;
+    padding: 15px;
+    color: white;
+    min-width: fit-content;
+}
+
+.left-title img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.left-title h4 {
+    margin: 0;
+}
+
+.right-title {
+    border-bottom: 5px solid #08796c;
+}
+
+.item-description {
+    background: #B2DFDB;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* =====================================================
+   16. OTHER PAGE-SPECIFIC STYLES
+===================================================== */
+
+/* INDEX */
+
+#home-desc {
+    background: #212121;
+    color: white;
+}
+
+
+/* AWARDS */
+
+#awards img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+#slider img {
+    max-height: 500px;
+    width: 100%;
+}
+
+#oceni {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.sortiraj-filter {
+    display: flex;
+}
+
+.btn-custom {
+    background-color: var(--boja-crvena);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: var(--boja-narandzasta);
+    color: white;
+}
+
+/* =====================================================
+   15. ADS
+===================================================== */
+
+#ads {
+    background: var(--color-primary);
+    margin-bottom: 10px
+}
+
+#ads img {
+    max-width: 1000px;
+    width: 100%;
+}
+
+
+/* =====================================================
+   10. CARDS
+===================================================== */
+
+.card {
+    border-left: 5px solid #08796c;
+    margin-top: 5px;
+}
+
+.card {
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.card-title a {
+    color: black;
+}
+
+.card-title a:hover {
+    color: #666;
+    text-decoration: none;
+}
+
+.card-img-top {
+    height: 200px;
+    width: 100%;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/* Card information */
+
+.res-info {
+    padding: 10px;
+    //background: #FAFAFA;
+    word-wrap: break-word;
+}
+
+.res-info img {
+    width: 20px;
+    height: 20px;
+    max-width: 100%;
+    margin-right: 5px;
+    border: 0;
+}
+
+.res-single {
+    border-bottom: 1px dashed #ccc;
+}
+
+/* =====================================================
+   9. SECTION TITLES
+===================================================== */
+
+.retro-section-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 18px;
+
+    background-color: #faf7f2;
+    border: 2px solid #e8c07d;
+    border-left: 6px solid #287d80;
+
+    box-shadow: 4px 4px 0 rgba(159, 61, 27, 0.15);
+}
+
+.retro-section-title img {
+    width: 26px;
+    height: 26px;
+}
+
+.retro-section-title h2 {
+    margin: 0;
+    color: #9f3d1b;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+
+.retro-btn {
+    display: inline-block;
+    padding: 10px 20px;
+
+    background-color: #c94a1b;
+    color: #faf7f2;
+
+    border: 2px solid #9f3d1b;
+    border-radius: 3px;
+
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: 0.2s ease;
+    align-self: center;
+}
+
+.retro-btn:hover {
+    background-color: #9f3d1b;
+    color: #faf7f2;
+
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
