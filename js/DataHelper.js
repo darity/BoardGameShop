@@ -214,6 +214,8 @@ function inicijalizujIgre(){
         if(igra.akcija == null)
             igra.novo = generisiNovo();
 
+        igra.stanje = generisiStanje();
+
     });
 
     localStorage.setItem("globalData", JSON.stringify(podaci));
@@ -254,6 +256,12 @@ function generisiOcene() {
     }
 
     return ocene;
+}
+
+function generisiStanje() {
+
+    return Math.floor(Math.random() * 21); // 0-20
+
 }
 
 function generisiKomentare() {
@@ -366,6 +374,15 @@ function dohvatiIgre() {
     return JSON.parse(localStorage.getItem("globalData")).igre;
 }
 
+function sacuvajIgre(data) {
+    var globalData = JSON.parse(localStorage.getItem("globalData"));
+
+    globalData.igre = data;
+
+    localStorage.setItem("globalData", JSON.stringify(globalData));
+}
+
+
 function dohvatiIgruPoId(id) {
     return dohvatiIgre().find(i => i.id == id);
 }
@@ -381,3 +398,4 @@ function dohvatiOcenu(igra) {
 function generisiNovo() {
     return Math.random() < 0.5; // oko 30% igara će biti nove
 }
+

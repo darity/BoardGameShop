@@ -11,7 +11,7 @@ $(document).ready(function(){
         const target = $(this).data("target");
 
         $("html, body").animate({
-            scrollTop: $(target).offset().top - $(".navbar").outerHeight()
+            scrollTop: $(target).offset().top - $(".header").outerHeight() -100
         }, 600);
     });
 
@@ -74,7 +74,7 @@ $(document).ready(function(){
 })
 
 function dohvatiIkonicuKategorije(cat) {
-    if (cat === "Zabavne igre") {
+    if (cat === "Zabavne") {
         return `<img src="../img/fun.png" alt="Zabavne igre">`;
     }
     else if (cat === "Strategije") {
@@ -149,10 +149,6 @@ function ucitajNoveIgre() {
                                     <div class="res-single d-flex align-items-center">
                                         ${dohvatiIkonicuKategorije(igra.kategorija)}
                                         <em>${igra.kategorija}</em>
-                                    </div>
-                                    <div class="res-single d-flex align-items-center">
-                                        <img src="../img/location.png" alt="lokacija">
-                                        <em>${igra.grad}</em>
                                     </div>
                                     <div class="res-single d-flex align-items-center">
                                         <img src="../img/satarY.png" alt="ocena">

@@ -1,17 +1,16 @@
 let selectedRating = 0;
 $(document).ready(function () {
     //localStorage.clear();
+    //ocistiKorpu();
     loadGame();
     ucitajIgru();
 
-    let selectedRating = 0;
 
     document.querySelectorAll(".rating-star").forEach(star => {
 
         star.addEventListener("click", function () {
 
             selectedRating = Number(this.dataset.value);
-            console.log("Selected:", selectedRating);
 
             document.querySelectorAll(".rating-star").forEach((s, index) => {
 
@@ -26,7 +25,7 @@ $(document).ready(function () {
     });
 
     $("#addComment").click(function () {
-        console.log("Klik!");
+
         const id = new URLSearchParams(window.location.search).get("id");
 
         if (dodajKomentar(id)) {
@@ -43,10 +42,30 @@ $(document).ready(function () {
             // Ponovo učitaj komentare
             const igra = dohvatiIgruPoId(id);
             ucitajKomentare(igra);
+            document.getElementById("rating").innerHTML =  prikaziZvezdice(dohvatiOcenu(igra)) +
+                " " +
+                dohvatiOcenu(igra) +
+                " (" +
+                igra.komentari.length +
+                " ocena)";
         }
 
     })
 
+    $("#addToCart").click(function () {
+        const id = new URLSearchParams(window.location.search).get("id");
+
+        if(!proveriDostupnost(id)) return;
+        dodajUKorpu(id);
+        azurirajDostupnost(id);
+        ucitajSidebar(id);
+    })
+
+    $("#favorite").click(function () {
+        const id = new URLSearchParams(window.location.search).get("id");
+        toggleFavorite(id);
+        prikaziFavorite(id);
+    });
 })
 
 function dodajKomentar(idIgre) {
@@ -55,17 +74,12 @@ function dodajKomentar(idIgre) {
     const tekst = document.getElementById("commentText").value.trim();
 
     if (ime === "") {
-        alert("Unesite ime.");
+        document.getElementById("form-error-name").textContent = "Unesite ime.";
         return false;
     }
 
     if (selectedRating === 0) {
-        alert("Izaberite ocenu.");
-        return false;
-    }
-
-    if (tekst === "") {
-        alert("Unesite komentar.");
+        document.getElementById("form-error-rating").textContent= "Izaberite ocenu.";
         return false;
     }
 
@@ -75,9 +89,9 @@ function dodajKomentar(idIgre) {
 
     igra.komentari.push({
         korisnik: ime,
-        datum: new Date().toLocaleDateString("sr-RS"),
         ocena: selectedRating,
-        tekst: tekst
+        tekst: tekst,
+        datum: new Date().toLocaleDateString("sr-RS")
     });
 
     localStorage.setItem("globalData", JSON.stringify(globalData));
@@ -95,12 +109,17 @@ function loadGame() {
     document.getElementById("breadcrumbCategory").href = kategorije[igra.kategorija];
 }
 function ucitajIgru() {
+
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const sveIgre = dohvatiIgre();
     const igra = sveIgre.find(i => i.id == id);
+
+    prikaziFavorite(id);
+
     var price;
     var oldPrice;
+
     if(igra.akcija) {
         price = igra.akcija.novaCena + "RSD";
         oldPrice = igra.cena + "RSD";
@@ -112,17 +131,8 @@ function ucitajIgru() {
 
 
     if (igra) {
-        const gallery = document.getElementById("gallery");
-
-        for(let i = 1; i <= igra.brojSlika; i++){
-            gallery.innerHTML += `
-            <img
-                src="../img/${igra.folder}/${i}.jpg"
-                onclick="promeniSliku(this.src)"
-                class="thumb">
-            `;
-
-        }
+        drawGallery(igra);
+        document.getElementById("addToCart").disabled = igra.stanje === 0;
 
         document.getElementById("gameTitle").innerText = igra.naziv;
         document.getElementById("rating").innerHTML =  prikaziZvezdice(dohvatiOcenu(igra)) +
@@ -139,25 +149,61 @@ function ucitajIgru() {
         document.getElementById("age").textContent = igra.uzrast;
         document.getElementById("gameCategory").textContent = igra.kategorija;
         document.getElementById("gameDescription").textContent = igra.opis;
+        document.getElementById("availability").textContent =
+            igra.stanje > 0 ? `${igra.stanje} kom.` : "Nije na stanju";
+
         document.getElementById("features").innerHTML = `
-            <li class="mb-2">🏭 <strong>Proizvođač:</strong> ${igra.proizvodjac}</li>
-            <li class="mb-2">🌍 <strong>Jezik:</strong> ${igra.jezik}</li>
-            <li class="mb-2">🎲 <strong>Tip igre:</strong> ${igra.kategorija}</li>
-            <li class="mb-2">👥 <strong>Broj igrača:</strong> ${igra.brojIgraca}</li>
-            <li class="mb-2">⏱️ <strong>Trajanje:</strong> ${igra.trajanje}</li>
-            <li class="mb-2">🎂 <strong>Uzrast:</strong> ${igra.uzrast}</li>
-            <li class="mb-2">📦 <strong>Dostupnost:</strong> ${
-                    igra.stanje > 0
-                        ? `${igra.stanje} komada`
-                        : "Nije na stanju"
-                }</li>
-            <li>🚚 <strong>Isporuka:</strong> 1–2 radna dana</li>
+            <li class="mb-2"><strong>Proizvođač:</strong> ${igra.proizvodjac}</li>
+            <li class="mb-2"><strong>Jezik:</strong> ${igra.jezik}</li>
+            <li class="mb-2"><strong>Tip igre:</strong> ${igra.kategorija}</li>
+            <li class="mb-2"><strong>Broj igrača:</strong> ${igra.brojIgraca}</li>
+            <li class="mb-2"><strong>Trajanje:</strong> ${igra.trajanje}</li>
+            <li class="mb-2"><strong>Uzrast:</strong> ${igra.uzrast}</li>
+            <li class="mb-2"><strong>Isporuka:</strong> 1–2 radna dana</li>
+            <li class="mb-2" id="features-available"><strong>Dostupnost:</strong> ${
+                    igra.stanje > 0? `${igra.stanje} komada`: "Nije na stanju"}</li>
         `;
 
         ucitajKomentare(igra)
     } else {
         document.getElementById("glavniSadrzaj").innerHTML = "<h2>Igra nije pronađena.</h2>";
     }
+}
+
+var currentImage;
+let currentGame;
+function drawGallery(igra) {
+    currentImage = 1;
+    currentGame = igra;
+
+    document.getElementById("mainImage").src = `../img/${igra.folder}/${currentImage}.jpg`;
+
+    populateGallery(igra);
+}
+
+function populateGallery() {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+
+    for(i = 1; i <= currentGame.brojSlika; i++) {
+        if(i === currentImage) continue;
+
+        gallery.innerHTML += `
+             <img src="../img/${currentGame.folder}/${i}.jpg"
+              class="thumb img-fluid rounded shadow-sm w-25" onmouseenter="hoverImage(this, ${i})">
+        `;
+
+    }
+}
+
+let hoverTimeout;
+
+function hoverImage(img, index) {
+    clearTimeout(hoverTimeout);
+
+    hoverTimeout = setTimeout(() => {
+        promeniSliku(img, index);
+    },150)
 }
 
 function ucitajKomentare(igra) {
@@ -200,10 +246,15 @@ function ucitajKomentare(igra) {
 
 }
 
-function promeniSliku(src){
+function promeniSliku(img, index) {
 
-    document.getElementById("mainImage").src = src;
+    currentImage = index;
 
+    const main = document.getElementById("mainImage");
+
+    const temp = main.src;
+    main.src = img.src;
+    img.src = temp;
 }
 
 function prikaziZvezdice(ocena){
@@ -220,4 +271,25 @@ function prikaziZvezdice(ocena){
     }
 
     return html;
+}
+
+function azurirajDostupnost(id, amount = -1){
+    var data = dohvatiIgre();
+    var igra = data.find(x => x.id === Number(id));
+
+    if(!igra) return;
+
+    igra.stanje = Math.max(0, igra.stanje + Number(amount));
+    document.getElementById("addToCart").disabled = igra.stanje === 0;
+    sacuvajIgre(data)
+
+    document.getElementById("availability").textContent =
+        igra.stanje > 0 ? `${igra.stanje} kom.` : "Nije na stanju";
+    document.getElementById("features-available").innerHTML =
+        `<strong>Dostupnost:</strong> ${
+        igra.stanje > 0? `${igra.stanje} komada`: "Nije na stanju"}</li>`;
+}
+
+function proveriDostupnost(id){
+    return dohvatiIgruPoId(id).stanje !== 0;
 }

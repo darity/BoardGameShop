@@ -1,7 +1,7 @@
 var kriterijumSortiranja = "";
 
 $(document).ready(function(){
-    localStorage.clear();
+    //localStorage.clear();
     ucitajZabavne();
 
     let poslednjaPozicija = $(window).scrollTop();
