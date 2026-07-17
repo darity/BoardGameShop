@@ -48,8 +48,9 @@ function loadOrders() {
             <span class="badge ">
                 ×${item.count}
             </span>
-
+            
         </div>
+        
     `;
         }
 
@@ -85,8 +86,9 @@ function loadOrders() {
             </div>
     
         </div>
-
+    
 </div>
+
 `;
     }
 
