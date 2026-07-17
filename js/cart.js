@@ -149,16 +149,17 @@ function promeniKolicinu(id, amount) {
         if (igra.stanje === 0)
             return;
 
-        igra.stanje--;
-        item.count++;
+        igra.stanje-= amount;
+        item.count+= amount;
+        sacuvajKorpu(cart);
 
     }
     // Smanjenje količine
     else {
 
-        item.count--;
+        item.count += amount;
 
-        igra.stanje++;
+        igra.stanje -= amount;
 
         if (item.count <= 0) {
             ukloniIzKorpe(id);
