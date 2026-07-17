@@ -8,6 +8,23 @@ $(document).ready(function(){
     $(document).on("mouseleave", ".fav", function () {
         $(this).find(".heart").attr("src", "../img/heartFull.png");
     });
+
+    let poslednjaPozicija = $(window).scrollTop();
+    let visinaNavbara = $(".store-header").outerHeight()+50;
+
+    $(window).on("scroll", function () {
+
+        const trenutnaPozicija = $(this).scrollTop();
+
+        if (trenutnaPozicija <= visinaNavbara) {
+            $(".navbar").removeClass("fixed");
+        }
+        else{
+            $(".navbar").addClass("fixed");
+        }
+
+        poslednjaPozicija = trenutnaPozicija;
+    });
 })
 
 function loadFav(){

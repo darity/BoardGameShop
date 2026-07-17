@@ -1,6 +1,23 @@
 $(document).ready(function(){
     loadPageCarousel("shop", "shop", 5);
     loadPageCarousel("games", "games", 4);
+
+    let poslednjaPozicija = $(window).scrollTop();
+    let visinaNavbara = $(".store-header").outerHeight();
+
+    $(window).on("scroll", function () {
+
+        const trenutnaPozicija = $(this).scrollTop();
+
+        if (trenutnaPozicija <= visinaNavbara) {
+            $(".navbar").removeClass("fixed");
+        }
+        else{
+            $(".navbar").addClass("fixed");
+        }
+
+        poslednjaPozicija = trenutnaPozicija;
+    });
 })
 
 function loadPageCarousel(id, folder, brojSlika){
