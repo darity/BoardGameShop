@@ -2,6 +2,20 @@ var kriterijumSortiranja = "";
 
 $(document).ready(function(){
     //localStorage.clear();
+
+    $("#srLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("sr");
+    });
+
+    $("#enLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("en");
+    });
+
+    loadTranslations("fun");
+    document.title = translations[currentLanguage].family.title;
+
     ucitajStrategije();
 
     let poslednjaPozicija = $(window).scrollTop();
@@ -81,54 +95,56 @@ function prikaziStrategije(igre) {
     }
 
     igre.forEach(igra => {
+        const prikaz = getLanguage() === "sr" ? igra : gameTranslations.en[igra.id];
+
         row.innerHTML += `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-3">
                 <div class="clickable-card" data-id="${igra.id}">
-                <div class="card h-100">
-
-                    <img 
-                        class="card-img-top" 
-                        src="../img/${igra.folder}/1.jpg" 
-                        alt="${igra.naziv}"
-                    >
-
-                    <div class="card-body">
-
-                        <h4 class="card-title">
-                            <a href="Igra.html?id=${igra.id}">
-                                ${igra.naziv}
-                            </a>
-                        </h4>
-
-                        <p class="card-text">
-                            ${igra.opis}
-                        </p>
-
-                        <div class="res-info">
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    <img src="../img/satarY.png" alt="zvezdica">
-                                    ${dohvatiOcenu(igra)}
-                                </small>
-                                
+                    <div class="card h-100">
+    
+                        <img 
+                            class="card-img-top" 
+                            src="../img/${igra.folder}/1.jpg" 
+                            alt="${prikaz.naziv}"
+                        >
+    
+                        <div class="card-body">
+    
+                            <h4 class="card-title">
+                                <a href="item.html?id=${igra.id}">
+                                    ${prikaz.naziv}
+                                </a>
+                            </h4>
+    
+                            <p class="res-info">
+                                ${prikaz.opis}
                             </p>
-                            
-                            
-                        </div>
-                   
-
-                       <div class="card-bottom">
-                            <a href="Igra.html?id=${igra.id}" class="game-details-btn">
-                                Pogledaj
-                            </a>
-                  
-                            <div class="game-price">
-                                <img src="../img/price.png" alt="cena">
-                                <strong>${igra.akcija != null ? igra.akcija.novaCena + " RSD" : igra.cena + " RSD"}</strong>
+    
+                            <div class="res-info">
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <img src="../img/satarY.png" alt="zvezdica">
+                                        ${dohvatiOcenu(igra)}
+                                    </small>
+                                    
+                                </p>
+                                
+                                
                             </div>
-                       </div>
+                       
+    
+                           <div class="card-bottom">
+                                <a href="item.html?id=${igra.id}" class="game-details-btn">
+                                   ${translations[getLanguage()].games.details}
+                                </a>
+                      
+                                <div class="game-price">
+                                    <img src="../img/price.png" alt="cena">
+                                    <strong>${igra.akcija != null ? igra.akcija.novaCena + " RSD" : igra.cena + " RSD"}</strong>
+                                </div>
+                           </div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         `;

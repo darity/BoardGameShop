@@ -1,4 +1,17 @@
 $(document).ready(function(){
+    $("#srLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("sr");
+    });
+
+    $("#enLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("en");
+    });
+
+    loadTranslations("orders");
+    document.title = translations[currentLanguage].orders.title;
+
     loadOrders();
 
     let poslednjaPozicija = $(window).scrollTop();
@@ -31,7 +44,7 @@ function loadOrders() {
 
         lista.innerHTML = `
             <div class="text-center p-5">
-                <h4>Nemate prethodnih porudžbina.</h4>
+                <h4>${translations[currentLanguage].orders["no-orders"]}</h4>
             </div>
         `;
 
@@ -93,7 +106,7 @@ function loadOrders() {
             <div class="col-md-3 text-end">
     
                 <small class="text-muted d-block mb-1">
-                    Ukupna cena
+                    ${translations[currentLanguage].orders.total}
                 </small>
     
                 <h4 class="fw-bold mb-0">

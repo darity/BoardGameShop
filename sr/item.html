@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">BoardGameShop | </title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/globalStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/navStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/catalog.css">
+    <link rel="stylesheet" type="text/css" href="../css/game.css">
+
+    <script src="../js/translations.js"></script>
+    <script src="../js/jspdf.umd.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
+
+    <script src="../js/dataHelper.js"></script>
+    <script src="../js/cartHelper.js"></script>
+    <script src="../js/favHelper.js"></script>
+    <script src="../js/item.js"></script>
+    <link rel="icon" type="image/png" href="../img/storeLogo.png">
+
+</head>
+
+<body>
+
+
+<header class="header">
+    <div class="store-header">
+        <a href="index.html" class="store-brand">
+            <img src="../img/storeLogo1.png" alt="BoardGameShop logo">
+            <span id="store-name">BoardGameShop</span>
+        </a>
+
+        <div class="language-selector">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown mr-2">
+                    <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" id="currentLanguage">
+                        <img id="currentLanguageFlag" src="../img/serbia.png" alt="Srpski" class="language-flag">
+                        <span id="currentLanguageText"></span>
+                    </a>
+
+                    <div class="dropdown-menu language-menu dropdown-menu-right">
+                        <a class="dropdown-item text-dark" id="changeLanguage">
+                            <img id="changeLanguageFlag"
+                                 src="../img/british.png" alt="English" class="language-flag">
+                            <span id="changeLanguageText"></span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-dark p-4">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse pl-3" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item mr-2"><a class="nav-link" href="index.html" data-i18n="home"></a></li>
+                <li class="nav-item mr-2"><a class="nav-link" href="gallery.html" data-i18n="gallery"></a></li>
+                <li class="nav-item mr-2"><a class="nav-link" href="catalog.html" data-i18n="catalog"></a></li>
+                <li class="nav-item dropdown mr-2">
+                    <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" data-i18n="category"></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="strategy.html" data-i18n="strategy"></a>
+                        <a class="dropdown-item" href="family.html" data-i18n="family"></a>
+                        <a class="dropdown-item" href="fun.html" data-i18n="fun"></a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown mr-2">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-i18n="account"></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="cart.html" data-i18n="cart"></a>
+                        <a class="dropdown-item" href="favorites.html" data-i18n="favourites"></a>
+                        <a class="dropdown-item" href="orders.html" data-i18n="orders"></a>
+                    </div>
+                </li>
+                <li class="nav-item mr-2"><a class="nav-link" href="about.html" data-i18n="about"></a></li>
+
+                <li class="nav-item dropdown d-md-none">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-i18n="language"></a>
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" id="srLang">
+                            <img src="../img/serbia.png"
+                                 alt="Srpski"
+                                 class="language-flag">
+                            RS
+                        </a>
+
+                        <a class="dropdown-item" href="#" id="enLang">
+                            <img src="../img/british.png"
+                                 alt="English"
+                                 class="language-flag">
+                            GB
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+</header>
+
+<div class="container">
+
+    <!-- Putanja -->
+    <nav aria-label="breadcrumb" class="mt-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html" data-i18n="home"></a></li>
+
+            <li class="breadcrumb-item"><a href="catalog.html" data-i18n="category"></a></li>
+
+            <li class="breadcrumb-item"><a href="#" id="breadcrumbCategory"></a></li>
+
+            <li class="breadcrumb-item active" aria-current="page" id="breadcrumbGame"></li>
+        </ol>
+    </nav>
+
+
+    <div class="row g-5">
+
+        <!-- LEVO -->
+        <div class="col-lg-5">
+
+            <img id="mainImage"
+                 class="img-fluid rounded shadow-sm w-100">
+
+            <div class="row g-2 mt-3" id="gallery">
+
+                <!-- JS -->
+
+            </div>
+
+        </div>
+
+        <!-- DESNO -->
+        <div class="col-lg-7">
+
+        <span class="badge bg-warning text-dark" id="gameCategory">
+        </span>
+
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <h1 id="gameTitle" class="mb-0"></h1>
+
+                <i id="favorite">
+                    <img src="" alt="srce" id="heart">
+                </i>
+            </div>
+
+            <div id="rating" class="mb-3"></div>
+
+            <p id="shortDescription"></p>
+
+            <h2 id="oldPrice" class="mb-4 old-price"></h2>
+
+            <h2 id="gamePrice"
+                class="text-danger fw-bold mb-4">
+            </h2>
+
+            <hr class="my-3 gallery-shelf">
+
+            <div class="row mb-4">
+
+                <div class="col-6">
+                    <span data-i18n="players"></span>:
+                    <span id="players"></span>
+                </div>
+
+                <div class="col-6">
+                    <span data-i18n="duration"></span>:
+                    <span id="duration"></span>
+                </div>
+
+                <div class="col-6 mt-2">
+                    <span data-i18n="age"></span>:
+                    <span id="age"></span>
+                </div>
+
+                <div class="col-6 mt-2">
+                    <span data-i18n="availability"></span>:
+                    <span id="availability"></span>
+                </div>
+
+            </div>
+
+            <div class="cart-controls">
+
+                <button class="retro-btn mr-3"
+                        id="addToCart"
+                        data-i18n="add-to-cart">
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- OPIS I KARAKTERISTIKE -->
+
+    <div class="row mt-5 g-4">
+
+        <div class="col-lg-7">
+
+            <div class="retro-card h-100">
+
+                <h3 data-i18n="description"></h3>
+
+                <p id="gameDescription"></p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-5">
+
+            <div class="retro-card h-100">
+
+                <h3 data-i18n="features"></h3>
+
+                <ul id="features">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+        <!-- KOMENTARI -->
+
+        <div class="mt-5">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h3>
+                    <span data-i18n="comments"></span>
+                    (<span id="commentCount">0</span>)
+                </h3>
+
+            </div>
+
+            <div id="comments">
+
+                <!-- JS -->
+
+            </div>
+
+        </div>
+
+    <!-- NOVI KOMENTAR -->
+
+    <div class="retro-card mt-5">
+
+        <h3 data-i18n="leave-comment"></h3>
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+
+                <label class="form-label" data-i18n="name"></label>
+                <small id="form-error-name" class="text-danger"></small>
+
+                <input
+                        id="commentName"
+                        class="form-control"
+                        data-i18n-placeholder="enter-name">
+
+            </div>
+
+            <div class="mb-3 col-md-6">
+
+                <label class="form-label" data-i18n="rating"></label>
+                <small id="form-error-rating" class="text-danger"></small>
+
+                <div id="ratingInput" class="mb-3 col-md-12">
+
+                    <img src="../img/starB.png" class="rating-star" data-value="1">
+                    <img src="../img/starB.png" class="rating-star" data-value="2">
+                    <img src="../img/starB.png" class="rating-star" data-value="3">
+                    <img src="../img/starB.png" class="rating-star" data-value="4">
+                    <img src="../img/starB.png" class="rating-star" data-value="5">
+
+                </div>
+
+            </div>
+
+            <div class="col-12">
+
+                <label class="form-label" data-i18n="comment"></label>
+
+                <textarea
+                        id="commentText"
+                        class="form-control"
+                        rows="5"
+                        data-i18n-placeholder="comment-placeholder"></textarea>
+
+            </div>
+
+            <div class="col-12 text-end">
+
+                <button
+                        class="retro-btn"
+                        id="addComment"
+                        data-i18n="send-comment">
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<footer class="mt-3 pb-3">
+    <div class="container">
+        <div class="footer-content">
+
+            <div class="footer-info">
+                <h4 data-i18n="footer-title"></h4>
+                <p data-i18n="footer-description"></p>
+            </div>
+
+            <div class="footer-links">
+                <h4 data-i18n="footer-links"></h4>
+
+                <a href="#" target="_blank"> <!--https://boardgamegeek.com/-->
+                    BoardGameGeek
+                </a>
+
+                <a href="#" target="_blank"><!--https://www.catan.com/-->
+                    Catan
+                </a>
+
+                <a href="#" target="_blank"><!--https://www.daysofwonder.com/-->
+                    Days of Wonder
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span data-i18n="footer-copyright"></span><br>
+        Isidora • Vanja <br>
+        <span data-i18n="footer-faculty">
+
+        </span>
+    </div>
+
+</footer>
+
+<div id="cartSidebar" class="cart-sidebar">
+
+    <button class="close-cart">&times;</button>
+
+    <h5 data-i18n="added-to-cart"></h5>
+
+    <img id="sidebarImage" src="" alt="">
+
+    <h6 id="sidebarName"></h6>
+
+    <p id="sidebarPrice"></p>
+
+    <a href="cart.html"
+       class="retro-btn w-100 text-center"
+       data-i18n="view-cart">
+    </a>
+
+    <div class="cart-progress"></div>
+
+</div>
+
+</body>
+</html>

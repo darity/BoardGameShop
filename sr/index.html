@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoardGameShop | Početna</title>
+    <title data-i18n="title">BoardGameShop | Početna</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="../css/globalStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/navStyle.css">
 
+    <script src="../js/translations.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
 
-    <script src="../js/DataHelper.js"></script>
+    <script src="../js/dataHelper.js"></script>
     <script src="../js/index.js"></script>
     <link rel="icon" type="image/png" href="../img/storeLogo.png">
 </head>
@@ -22,28 +23,24 @@
 <body>
     <header class="header">
         <div class="store-header">
-            <a href="Index.html" class="store-brand">
+            <a href="index.html" class="store-brand">
                 <img src="../img/storeLogo1.png" alt="BoardGameShop logo">
-                <span id="store-name" >BoardGameShop</span>
+                <span id="store-name">BoardGameShop</span>
             </a>
 
             <div class="language-selector">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown mr-2">
-                        <a class="nav-link dropdown-toggle"
-                           data-toggle="dropdown" href="../sr/Index.html">
-                            <img src="../img/serbia.png"
-                                 alt="Srpski"
-                                 class="language-flag">
-                            SR
+                        <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" id="currentLanguage">
+                            <img id="currentLanguageFlag" src="../img/serbia.png" alt="Srpski" class="language-flag">
+                            <span id="currentLanguageText"></span>
                         </a>
 
                         <div class="dropdown-menu language-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="../en/Index.html">
-                                <img src="../img/british.png"
-                                     alt="English"
-                                     class="language-flag">
-                                GB
+                            <a class="dropdown-item text-dark" id="changeLanguage">
+                                <img id="changeLanguageFlag"
+                                     src="../img/british.png" alt="English" class="language-flag">
+                                <span id="changeLanguageText"></span>
                             </a>
                         </div>
                     </li>
@@ -56,31 +53,29 @@
             </button>
             <div class="collapse navbar-collapse pl-3" id="collapsibleNavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item mr-2"><a class="nav-link active" href="Index.html">Početna</a></li>
-                    <li class="nav-item mr-2"><a class="nav-link" href="Galerija.html">Galerija</a></li>
-                    <li class="nav-item mr-2"><a class="nav-link" href="KatalogIgara.html">Katalog</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link active" href="index.html" data-i18n="home"></a></li>
+                    <li class="nav-item mr-2"><a class="nav-link" href="gallery.html" data-i18n="gallery"></a></li>
+                    <li class="nav-item mr-2"><a class="nav-link" href="catalog.html" data-i18n="catalog"></a></li>
                     <li class="nav-item dropdown mr-2">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Kategorije</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" data-i18n="category"></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="Strategije.html">Strategije</a>
-                            <a class="dropdown-item" href="Porodicne.html">Porodične</a>
-                            <a class="dropdown-item" href="Zabavne.html">Zabavne</a>
+                            <a class="dropdown-item" href="strategy.html" data-i18n="strategy"></a>
+                            <a class="dropdown-item" href="family.html" data-i18n="family"></a>
+                            <a class="dropdown-item" href="fun.html" data-i18n="fun"></a>
                         </div>
                     </li>
                     <li class="nav-item dropdown mr-2">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Moj Nalog</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-i18n="account"></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="Korpa.html">Korpa</a>
-                            <a class="dropdown-item" href="Omijene.html">Omiljene</a>
-                            <a class="dropdown-item" href="Istorija.html">Istorija porudžbina</a>
+                            <a class="dropdown-item" href="cart.html" data-i18n="cart"></a>
+                            <a class="dropdown-item" href="favorites.html" data-i18n="favourites"></a>
+                            <a class="dropdown-item" href="orders.html" data-i18n="orders"></a>
                         </div>
                     </li>
-                    <li class="nav-item mr-2"><a class="nav-link" href="Onama.html">O nama</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link" href="about.html" data-i18n="about"></a></li>
 
                     <li class="nav-item dropdown d-md-none">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                            🌍 Jezik
-                        </a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-i18n="language"></a>
 
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" id="srLang">
@@ -128,16 +123,14 @@
                     <div class="carousel-item active">
                         <div class="retro-slide sale-slide">
                             <div class="slide-content">
-                                <span class="slide-label">AKCIJA</span>
+                                <span class="slide-label" data-i18n="sale-slide-title"></span>
 
-                                <h2>Specijalni popusti do 30%</h2>
+                                <h2 data-i18n="sale-slide-h"></h2>
 
-                                <p>
-                                    Pronađi svoju sledeću omiljenu igru po posebnoj ceni.
+                                <p data-i18n="sale-slide-p">
                                 </p>
 
-                                <a href="#" class="retro-btn" data-target="#akcije">
-                                    Pogledaj akcije
+                                <a href="#" class="retro-btn" data-target="#akcije" data-i18n="sale-slide-a">
                                 </a>
                             </div>
                             <div class="slide-image">
@@ -150,20 +143,18 @@
                     <div class="carousel-item">
                         <div class="retro-slide tournament-slide">
                             <div class="slide-content">
-                                <span class="slide-label">DOGAĐAJ</span>
+                                <span class="slide-label" data-i18n="event-slide-title"></span>
 
-                                <h2>Veliki Catan turnir</h2>
+                                <h2 data-i18n="event-slide-h"></h2>
 
-                                <p>
-                                    Okupi ekipu i pridruži nam se na sledećem turniru!
+                                <p data-i18n="event-slide-p">
                                 </p>
 
-                                <a href="#" class="retro-btn" data-target="#turniri">
-                                    Pogledaj događaje
+                                <a href="#" class="retro-btn" data-target="#turniri" data-i18n="event-slide-a">
                                 </a>
                             </div>
                             <div class="slide-image">
-                                <img src="../img/catanTurnir.jpg" alt="Veliki Catan turnir">
+                                <img src="../img/catanTurnir.jpg" alt="Catan Turnir">
                             </div>
                         </div>
                     </div>
@@ -173,16 +164,14 @@
                     <div class="carousel-item">
                         <div class="retro-slide new-games-slide">
                             <div class="slide-content">
-                                <span class="slide-label">NOVO</span>
+                                <span class="slide-label" data-i18n="new-slide-title"></span>
 
-                                <h2>Nove igre su stigle!</h2>
+                                <h2 data-i18n="new-slide-h"></h2>
 
-                                <p>
-                                    Otkrij najnovije naslove u našoj ponudi.
+                                <p data-i18n="new-slide-p">
                                 </p>
 
-                                <a href="#" class="retro-btn" data-target="#katalog">
-                                    Istraži igre
+                                <a href="#" class="retro-btn" data-target="#katalog" data-i18n="new-slide-a">
                                 </a>
                             </div>
                             <div class="slide-image">
@@ -201,7 +190,7 @@
                    data-slide="prev">
 
                     <span class="carousel-control-prev-icon"></span>
-                    <span class="sr-only">Prethodno</span>
+                    <span class="sr-only" data-i18n="arrow-prev"></span>
                 </a>
 
 
@@ -212,7 +201,7 @@
                    data-slide="next">
 
                     <span class="carousel-control-next-icon"></span>
-                    <span class="sr-only">Sledeće</span>
+                    <span class="sr-only" data-i18n="arrow-next"></span>
                 </a>
 
             </div>
@@ -221,7 +210,7 @@
                 <div class=" col-sm-6 col-md-3 left-title d-flex align-items-center">
                     <div class="retro-section-title">
                         <img src="../img/satarY.png" alt="star">
-                        <h2>Najbolje ocenjene</h2>
+                        <h2 data-i18n="top-rated"></h2>
                     </div>
                 </div>
             </div>
@@ -232,7 +221,7 @@
         <section id="akcije" class="container mt-5">
             <!-- Akcije i popusti -->
             <div class="retro-section-title">
-                <h2>🔥 Aktuelne akcije</h2>
+                <h2 data-i18n="active-sales"></h2>
             </div>
             <div class="slide-wrapper justify-content-center">
                 <!-- Nove igre -->
@@ -254,7 +243,7 @@
         <hr class="gallery-shelf">
         <section id="katalog" class="container mt-5">
             <div class="retro-section-title">
-                <h2>Nove igre u ponudi</h2>
+                <h2 data-i18n="new-games"></h2>
             </div>
             <div class="slide-wrapper justify-content-center">
                 <!-- Nove igre -->
@@ -276,7 +265,7 @@
         <section id="turniri" class="container mt-5 mb-5">
 
             <div class="retro-section-title">
-                <h2>Turniri i događaji</h2>
+                <h2 data-i18n="events"></h2>
             </div>
 
             <div class="row mt-3">
@@ -285,17 +274,17 @@
                     <div class="event-card">
                         <div class="event-date">
                             <span class="day">25</span>
-                            <span class="month">JUL</span>
+                            <span class="month" data-i18n="month-first-card"></span>
                         </div>
 
                         <div class="event-content">
-                            <span class="event-tag">TURNIR</span>
-                            <h3>Veliki Catan turnir</h3>
-                            <p>Okupi ekipu i pokaži svoje strateške veštine!</p>
-                            <p>Ulaz: 800RSD</p>
+                            <span class="event-tag" data-i18n="name-first-card"></span>
+                            <h3 data-i18n="h-first-card"></h3>
+                            <p data-i18n="p-first-card"></p>
+                            <p data-i18n="price-first-card"></p>
 
                             <div class="event-info">
-                                <span>📍 Beograd</span>
+                                <span data-i18n="place-first-card"></span>
                                 <span>🕒 18:00</span>
                             </div>
                         </div>
@@ -305,18 +294,18 @@
                 <div class="col-md-6 col-lg-4 mt-3">
                     <div class="event-card">
                         <div class="event-date">
-                            <span class="day">SVAKE</span>
-                            <span class="month">SREDE</span>
+                            <span class="day" data-i18n="day-second-card"></span>
+                            <span class="month" data-i18n="month-second-card"></span>
                         </div>
 
                         <div class="event-content">
-                            <span class="event-tag">DOGAĐAJ</span>
-                            <h3>Veče društvenih igara</h3>
-                            <p>Isprobaj nove igre i upoznaj druge ljubitelje društvenih igara.</p>
-                            <p>Ulaz slobodan</p>
+                            <span class="event-tag" data-i18n="name-second-card"></span>
+                            <h3 data-i18n="h-second-card"></h3>
+                            <p data-i18n="p-second-card"></p>
+                            <p data-i18n="price-second-card"></p>
 
                             <div class="event-info">
-                                <span>📍 Novi Sad</span>
+                                <span data-i18n="place-second-card"></span>
                                 <span>🕒 19:00</span>
                             </div>
                         </div>
@@ -327,16 +316,17 @@
                     <div class="event-card">
                         <div class="event-date">
                             <span class="day">10</span>
-                            <span class="month">AVG</span>
+                            <span class="month" data-i18n="month-third-card"></span>
                         </div>
 
                         <div class="event-content">
-                            <span class="event-tag">TURNIR</span>
-                            <h3>Codenames izazov</h3>
-                            <p>Okupi svoj tim i takmiči se za titulu najboljih špijuna.</p>
-                            <p>Ulaz slobodan</p>
+                            <span class="event-tag" data-i18n="name-third-card"></span>
+                            <h3 data-i18n="h-third-card"></h3>
+                            <p data-i18n="p-third-card"></p>
+                            <p data-i18n="price-third-card"></p>
+
                             <div class="event-info">
-                                <span>📍 Niš</span>
+                                <span data-i18n="place-third-card"></span>
                                 <span>🕒 17:00</span>
                             </div>
                         </div>
@@ -353,12 +343,12 @@
             <div class="footer-content">
 
                 <div class="footer-info">
-                    <h4>Board Games</h4>
-                    <p>Svet društvenih igara na jednom mestu.</p>
+                    <h4 data-i18n="footer-title"></h4>
+                    <p data-i18n="footer-description"></p>
                 </div>
 
                 <div class="footer-links">
-                    <h4>Korisni linkovi</h4>
+                    <h4 data-i18n="footer-links"></h4>
 
                     <a href="#" target="_blank"> <!--https://boardgamegeek.com/-->
                         BoardGameGeek
@@ -375,10 +365,13 @@
 
             </div>
         </div>
+
         <div class="footer-bottom">
-            Copyright 2026<br>
+            <span data-i18n="footer-copyright"></span><br>
             Isidora • Vanja <br>
-            Odsek za softversko inženjerstvo Elektrotehničkog fakulteta Univerziteta u Beogradu
+            <span data-i18n="footer-faculty">
+
+        </span>
         </div>
 
     </footer>

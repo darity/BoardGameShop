@@ -1,4 +1,18 @@
 $(document).ready(function() {
+
+    $("#srLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("sr");
+    });
+
+    $("#enLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("en");
+    });
+
+    loadTranslations("cart");
+    document.title = translations[currentLanguage].cart.title;
+
     loadCart();
 
     $("#order").on("click", () => orderCart());
@@ -41,7 +55,7 @@ $(document).ready(function() {
     });
 
     let poslednjaPozicija = $(window).scrollTop();
-    let visinaNavbara = $(".store-header").outerHeight();
+    let visinaNavbara = $(".store-header").outerHeight() +100;
 
     $(window).on("scroll", function () {
 
@@ -57,6 +71,7 @@ $(document).ready(function() {
         poslednjaPozicija = trenutnaPozicija;
     });
 })
+
 var totalPrice = 0;
 function loadCart() {
     var cart = dohvatiKorpu();
@@ -83,14 +98,15 @@ function loadCart() {
                     <div class="col-md-2 text-center">
                         <img src="../img/${game.folder}/1.jpg" class="img-fluid rounded" style="max-height:120px;">
                     </div>
+        
                     <div class="col-md-4">
                         <h5 class="mb-2">${game.naziv}</h5>
                         <p class="text-muted mb-0">${game.akcija != null ? game.akcija.novaCena + " RSD" : game.cena + " RSD"}</p>
                     </div>
-
+        
                     <div class="col-md-3 text-center">
-                    
-                        <label class="form-label mb-2">Količina</label>
+        
+                        <label class="form-label mb-2"> ${translations[currentLanguage].cart["cart-quantity"]}</label>
         
                         <div class="btn-group">
                             <button class="btn btn-outline-dark" onclick="promeniKolicinu(${game.id},-1)">-</button>
@@ -98,18 +114,17 @@ function loadCart() {
                             <button class="btn btn-outline-dark" onclick="promeniKolicinu(${game.id},1)">+</button>
                         </div>
                     </div>
-    
+        
                     <div class="col-md-2 text-end">
                         <h6>${total} RSD</h6>
                     </div>
         
                     <div class="col-md-1 text-end">
-        
                         <button class="btn" onclick="promeniKolicinu(${game.id}, -${item.count})"><img src="../img/delete.png"></button>
                     </div>
                 </div>
             </div>
-        `
+        `;
     }
 
     document.getElementById("ukupnaCena").innerHTML =
@@ -165,6 +180,7 @@ function orderCart() {
     var cart = dohvatiKorpu();
 
     if (cart.length === 0) {
+        resetForm();
         return;
     }
 
@@ -212,28 +228,32 @@ function validateForm(){
     document.getElementById("cityError").textContent = "";
 
     if (name === "") {
-        document.getElementById("fullNameError").textContent = "Unesite ime i prezime.";
+        document.getElementById("fullNameError").textContent =
+            translations[currentLanguage].cart["enter-full-name"];
         return false;
     }
 
-
-    if (phone === "" ) {
-        document.getElementById("phoneError").textContent = "Unesite broj telefona.";
+    if (phone === "") {
+        document.getElementById("phoneError").textContent =
+            translations[currentLanguage].cart["enter-phone"];
         return false;
     }
 
     if (address === "") {
-        document.getElementById("addressError").textContent = "Unesite adresu.";
+        document.getElementById("addressError").textContent =
+            translations[currentLanguage].cart["enter-address"];
         return false;
     }
 
     if (postalCode === "") {
-        document.getElementById("postalCodeError").textContent = "Unesite poštanski broj.";
+        document.getElementById("postalCodeError").textContent =
+            translations[currentLanguage].cart["enter-postal-code"];
         return false;
     }
 
     if (city === "") {
-        document.getElementById("cityError").textContent = "Unesite grad.";
+        document.getElementById("cityError").textContent =
+            translations[currentLanguage].cart["enter-city"];
         return false;
     }
 

@@ -1,4 +1,18 @@
 $(document).ready(function () {
+
+    $("#srLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("sr");
+    });
+
+    $("#enLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("en");
+    });
+
+    loadTranslations("about");
+    document.title = translations[currentLanguage].about.title;
+
     let poslednjaPozicija = $(window).scrollTop();
     let visinaNavbara = $(".store-header").outerHeight();
 

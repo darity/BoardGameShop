@@ -2,6 +2,19 @@ var kriterijumSortiranja = "";
 
 $(document).ready(function(){
     //localStorage.clear();
+
+    $("#srLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("sr");
+    });
+
+    $("#enLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("en");
+    });
+
+    loadTranslations("family");
+    document.title = translations[currentLanguage].family.title;
     ucitajPorodicne();
 
     let poslednjaPozicija = $(window).scrollTop();
@@ -71,7 +84,7 @@ function ucitajPorodicne() {
 }
 
 function prikaziPorodicne(igre) {
-    var row = document.getElementById("listaIgrara");
+    var row = document.getElementById("listaIgara");
 
     row.innerHTML = "";
 
@@ -85,6 +98,8 @@ function prikaziPorodicne(igre) {
     }
 
     igre.forEach(igra => {
+        const prikaz = getLanguage() === "sr" ? igra : gameTranslations.en[igra.id];
+
         row.innerHTML += `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-3">
                 <div class="clickable-card" data-id="${igra.id}">
@@ -93,19 +108,19 @@ function prikaziPorodicne(igre) {
                         <img 
                             class="card-img-top" 
                             src="../img/${igra.folder}/1.jpg" 
-                            alt="${igra.naziv}"
+                            alt="${prikaz.naziv}"
                         >
     
                         <div class="card-body">
     
                             <h4 class="card-title">
-                                <a href="Igra.html?id=${igra.id}">
-                                    ${igra.naziv}
+                                <a href="item.html?id=${igra.id}">
+                                    ${prikaz.naziv}
                                 </a>
                             </h4>
     
-                            <p class="card-text">
-                                ${igra.opis}
+                            <p class="res-info">
+                                ${prikaz.opis}
                             </p>
     
                             <div class="res-info">
@@ -122,8 +137,8 @@ function prikaziPorodicne(igre) {
                        
     
                            <div class="card-bottom">
-                                <a href="Igra.html?id=${igra.id}" class="game-details-btn">
-                                    Pogledaj
+                                <a href="item.html?id=${igra.id}" class="game-details-btn">
+                                   ${translations[getLanguage()].games.details}
                                 </a>
                       
                                 <div class="game-price">

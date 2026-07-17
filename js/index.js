@@ -1,5 +1,18 @@
 $(document).ready(function(){
     //localStorage.clear();
+    $("#srLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("sr");
+    });
+
+    $("#enLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("en");
+    });
+
+    loadTranslations("index");
+    document.title = translations[currentLanguage].index.title;
+
     inicijalizujIgre();
     load();
     ucitajNoveIgre();
@@ -106,12 +119,12 @@ function load() {
                     <div class="card clickable-card" data-id="${igra.id}">
                         <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
+                            <h4 class="card-title"><a href="item.html?id=${igra.id}">${igra.naziv}</a></h4>
                             <div class="card-text">
                                 <div class="res-info">
                                     <div class="res-single d-flex align-items-center">
                                         ${dohvatiIkonicuKategorije(igra.kategorija)}
-                                        <em>${igra.kategorija}</em>
+                                        <em>${translations[getLanguage()].categories[igra.kategorija]}</em>
                                     </div>
                                     
                                     <div class="res-single d-flex align-items-center">
@@ -143,12 +156,12 @@ function ucitajNoveIgre() {
                         <div class="clickable-card" data-id="${igra.id}">
                             <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
                             <div class="card-body">
-                                <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
+                                <h4 class="card-title"><a href="item.html?id=${igra.id}">${igra.naziv}</a></h4>
                                 <div class="card-text">
                                     <div class="res-info">
                                         <div class="res-single d-flex align-items-center">
                                             ${dohvatiIkonicuKategorije(igra.kategorija)}
-                                            <em>${igra.kategorija}</em>
+                                            <em>${translations[getLanguage()].categories[igra.kategorija]}</em>
                                         </div>
                                         <div class="res-single d-flex align-items-center">
                                             <img src="../img/satarY.png" alt="ocena">
@@ -156,7 +169,7 @@ function ucitajNoveIgre() {
                                         </div>\
                                         <div class="res-single d-flex align-items-center">
                                             <img src="../img/price.png" alt="cena">
-                                            <em>${igra.cena}</em>
+                                            <em>${igra.cena} RSD</em>
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +200,7 @@ function ucitajAkcije() {
                         <div class="clickable-card" data-id="${igra.id}">
                             <img class="card-img-top" src="../img/${igra.folder}/1.jpg" alt="${igra.naziv}">
                             <div class="card-body">
-                                <h4 class="card-title"><a href="Igra.html?id=${igra.id}">${igra.naziv}</a></h4>
+                                <h4 class="card-title"><a href="item.html?id=${igra.id}">${igra.naziv}</a></h4>
                                 <div class="card-text">
                                     <div class="res-info">
                                        
@@ -208,7 +221,7 @@ function ucitajAkcije() {
                                         
                                         <div class="res-single d-flex align-items-center">
                                             <img src="../img/calendar.png" alt="datum">
-                                            <em>Do ${igra.akcija.trajeDo}</em>
+                                            <em>${igra.akcija.trajeDo}</em>
                                         </div>
                                     </div>
                                 </div>

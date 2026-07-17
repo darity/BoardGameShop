@@ -1,4 +1,17 @@
 $(document).ready(function(){
+    $("#srLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("sr");
+    });
+
+    $("#enLang").click(function (e) {
+        e.preventDefault();
+        changeLanguageTo("en");
+    });
+
+    loadTranslations("gallery");
+    document.title = translations[currentLanguage].gallery.title;
+
     loadPageCarousel("shop", "shop", 5);
     loadPageCarousel("games", "games", 4);
 
