@@ -180,69 +180,66 @@ function filtrirajISortiraj() {
 
 
 function generisiPDF(igre) {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
+    const lang = getLanguage();
+    const t = translations[currentLanguage].pdf;
 
-    let y = 20;
+    let html = `
+    <div style="
+        padding:40px;
+        width:800px;
+        font-family:Arial,sans-serif;
+        background:white;
+    ">
 
-    // Naslov
-    pdf.setFontSize(20);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("Katalog strateških igara", 20, y);
+        <h1>${t.strategyTitle}</h1>
+`;
 
-    y += 15;
 
-    igre.forEach(function (igra, index) {
+    igre.forEach((igra, index) => {
+        const game =
+            lang === "en"
+                ? gameTranslations.en[igra.id]
+                : igra;
 
-        // Ako nema dovoljno mesta za sledeću igru
-        if (y > 250) {
-            pdf.addPage();
-            y = 20;
-        }
+        html += `
+            <div style="margin-bottom:40px; overflow:hidden;">
+            
+                <img
+                    src="../img/${igra.folder}/1.jpg"
+                    style="
+                        width:170px;
+                        float:right;
+                        margin-left:20px;
+                        border-radius:8px;
+                    ">
+            
+                <h2>${index + 1}. ${game.naziv}</h2>
+            
+                <p><strong>${t.description}:</strong> ${game.opis}</p>
+            
+                <p><strong>${t.price}:</strong> ${igra.cena} RSD</p>
+            
+                <p><strong>${t.rating}:</strong> ${dohvatiOcenu(igra)}</p>
+            
+                <div style="clear:both;"></div>
+            
+                <hr style="margin-top:25px;">
+            </div>
+            `;
 
-        // Naziv igre
-        pdf.setFontSize(15);
-        pdf.setFont("helvetica", "bold");
-        pdf.text((index + 1) + ". " + igra.naziv, 20, y);
-
-        y += 9;
-
-        // Opis
-        pdf.setFontSize(11);
-        pdf.setFont("helvetica", "normal");
-
-        const opis = pdf.splitTextToSize(
-            "Opis: " + igra.opis,
-            165
-        );
-
-        pdf.text(opis, 25, y);
-
-        y += opis.length * 6;
-
-        // Cena
-        pdf.text(
-            "Cena: " + igra.cena + " RSD",
-            25,
-            y
-        );
-
-        y += 7;
-
-        // Ocena
-        pdf.text(
-            "Prosecna ocena: " + dohvatiOcenu(igra),
-            25,
-            y
-        );
-
-        y += 8;
-
-        // Linija između igara
-        pdf.line(20, y, 190, y);
-
-        y += 12;
     });
 
-    pdf.save("katalog-strategije.pdf");
+    html += "</div>";
+
+    const pdfContent = document.createElement("div");
+    pdfContent.innerHTML = html;
+
+    document.body.appendChild(pdfContent);
+
+    html2pdf()
+        .from(pdfContent)
+        .save()
+        .then(() => {
+            document.body.removeChild(pdfContent);
+        });
 }

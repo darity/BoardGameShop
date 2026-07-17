@@ -314,6 +314,21 @@ const translations = {
 
             "about-location": "Gde se nalazimo"
         },
+
+        pdf: {
+            familyTitle: "Katalog porodičnih igara",
+            strategyTitle: "Katalog strateških igara",
+            funTitle: "Katalog zabavnih igara",
+            catalogTitle: "Katalog zabavnih igara",
+
+            description: "Opis",
+            price: "Cena",
+            rating: "Prosečna ocena",
+
+            familyFile: "katalog-porodicnih-igara.pdf",
+            strategyFile: "katalog-strateskih-igara.pdf",
+            funFile: "katalog-zabavnih-igara.pdf"
+        },
     },
 
     en: {
@@ -629,6 +644,21 @@ const translations = {
             "about-sunday": "Sunday",
 
             "about-location": "Where to Find Us"
+        },
+
+        pdf: {
+            familyTitle: "Family Games Catalog",
+            strategyTitle: "Strategy Games Catalog",
+            funTitle: "Party Games Catalog",
+            catalogTitle: "Catalog Games Catalog",
+
+            description: "Description",
+            price: "Price",
+            rating: "Average rating",
+
+            familyFile: "family-games-catalog.pdf",
+            strategyFile: "strategy-games-catalog.pdf",
+            funFile: "party-games-catalog.pdf"
         },
     }
 
