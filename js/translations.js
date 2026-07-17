@@ -721,7 +721,9 @@ window.onload = function () {
 
     loadTranslations(page);
 
-    document.title = translations[getLanguage()][page].title;
+    if (page !== "item") {
+        document.title = translations[getLanguage()][page].title;
+    }
 
     document.getElementById("changeLanguage").addEventListener("click", function (e) {
         e.preventDefault();

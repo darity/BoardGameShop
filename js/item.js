@@ -3,6 +3,7 @@ $(document).ready(function () {
     //localStorage.clear();
     //ocistiKorpu();
 
+
     $("#srLang").click(function (e) {
         e.preventDefault();
         changeLanguageTo("sr");
