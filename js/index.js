@@ -100,8 +100,6 @@ function load() {
 
     for (var i = 0; i < data.length; i++) {
         var igra = data[i];
-        console.log(igra);
-        console.log(igra.komentari);
         row.innerHTML += `
                
                 <div class="col-sm-6 col-md-4 col-lg-3 mt-3">

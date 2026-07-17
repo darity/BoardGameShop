@@ -40,7 +40,7 @@ $(document).ready(function() {
         this.value = this.value.replace(/\D/g, "");
     });
 })
-
+var totalPrice = 0;
 function loadCart() {
     var cart = dohvatiKorpu();
     var games = dohvatiIgre();
@@ -49,14 +49,15 @@ function loadCart() {
 
     lista.innerHTML = "";
 
-    var totalPrice = 0;
+    totalPrice = 0;
 
     for (var i = 0; i < cart.length; i++) {
 
         var item = cart[i];
         var game = games.find(x => x.id === Number(item.id));
 
-        var total = game.cena * item.count;
+
+        var total = (game.akcija != null ? game.akcija.novaCena : game.cena)  * item.count;
         totalPrice += total;
 
         lista.innerHTML += `
@@ -67,7 +68,7 @@ function loadCart() {
                     </div>
                     <div class="col-md-4">
                         <h5 class="mb-2">${game.naziv}</h5>
-                        <p class="text-muted mb-0">${game.cena} RSD</p>
+                        <p class="text-muted mb-0">${game.akcija != null ? game.akcija.novaCena + " RSD" : game.cena + " RSD"}</p>
                     </div>
 
                     <div class="col-md-3 text-center">
@@ -105,25 +106,37 @@ function promeniKolicinu(id, amount) {
 
     if (!item) return;
 
-    item.count += amount;
+    var data = dohvatiIgre();
+    var igra = data.find(x => x.id === Number(id));
 
-    if (item.count <= 0) {
-        ukloniIzKorpe(id);
-    }else sacuvajKorpu(cart);
+    if (!igra) return;
 
-    loadCart();
+    // Povećanje količine
+    if (amount > 0) {
 
-    if(amount<0){
+        if (igra.stanje === 0)
+            return;
 
-        var data = dohvatiIgre();
-        var igra = data.find(x => x.id === Number(id));
+        igra.stanje--;
+        item.count++;
 
-        if (!igra) return;
-
-        igra.stanje = Math.max(0, igra.stanje - amount);
-
-        sacuvajIgre(data);
     }
+    // Smanjenje količine
+    else {
+
+        item.count--;
+
+        igra.stanje++;
+
+        if (item.count <= 0) {
+            ukloniIzKorpe(id);
+        } else {
+            sacuvajKorpu(cart);
+        }
+    }
+
+    sacuvajIgre(data);
+    loadCart();
 }
 
 
@@ -152,7 +165,7 @@ function orderCart() {
             postanskiBroj: $("#postalCode").val().trim()
         },
 
-        ukupnaCena: izracunajUkupnuCenu(),
+        ukupnaCena: totalPrice,
 
         proizvodi: [...cart]
 

@@ -25,18 +25,25 @@ function ucitajKorpu(){
 }
 
 function dodajUKorpu(id){
-    //ocistiKorpu()
+    var igra = dohvatiIgruPoId(id);
+
+    if (!igra || igra.stanje === 0) return;
+
     var korpa = dohvatiKorpu();
 
-    let stavka = korpa.find(x => x.id === Number(id));
+    var stavka = korpa.find(x => x.id === Number(id));
 
     if(!stavka){
+
         korpa.push({
             id: Number(id),
             count: 1
-        })
+        });
+
     }else{
+
         stavka.count++;
+
     }
 
     sacuvajKorpu(korpa);
